@@ -1,0 +1,52 @@
+{
+  "timeZone": "America/New_York",
+  "dependencies": {},
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/gmail.addons.execute",
+    "https://www.googleapis.com/auth/gmail.readonly",
+    "https://www.googleapis.com/auth/gmail.modify",
+    "https://www.googleapis.com/auth/script.external_request",
+    "https://www.googleapis.com/auth/userinfo.email"
+  ],
+  "webapp": {
+    "executeAs": "USER_DEPLOYING",
+    "access": "ANYONE_ANONYMOUS"
+  },
+  "urlFetchWhitelist": [
+    "https://mail.google.com/"
+  ],
+  "addOns": {
+    "common": {
+      "name": "Leads Manager",
+      "logoUrl": "https://fonts.gstatic.com/s/i/short-term/release/googlesymbols/person_add/default/24px.svg",
+      "layoutProperties": {
+        "primaryColor": "#1A73E8",
+        "secondaryColor": "#34A853"
+      },
+      "openLinkUrlPrefixes": [
+        "https://mail.google.com/"
+      ]
+    },
+    "gmail": {
+      "homepageTrigger": {
+        "runFunction": "getHomepageCard"
+      },
+      "contextualTriggers": [
+        {
+          "unconditional": {},
+          "onTriggerFunction": "getContextualAddOn"
+        }
+      ],
+      "universalActions": [
+        {
+          "text": "Link to Lead",
+          "runFunction": "onGmailMessageAction"
+        }
+      ],
+      "primaryColor": "#1A73E8",
+      "secondaryColor": "#34A853"
+    }
+  }
+}
